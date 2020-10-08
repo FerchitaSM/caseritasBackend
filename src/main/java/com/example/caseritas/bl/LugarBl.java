@@ -27,7 +27,8 @@ public class LugarBl {
         this.fotoRepository = fotoRepository;
     }
 
-    public List<LugarEntity> list_places_type(int id_tipo_turismo) {
+    public List<LugarEntity> list_places_type(String tipo_turismo) {
+        int id_tipo_turismo = lugarRepository.findIdByTipoTurismo(tipo_turismo);
         List<LugarEntity> listPlaces = lugarRepository.findAllByIdTipoTurismo(id_tipo_turismo);
         return listPlaces;
 
