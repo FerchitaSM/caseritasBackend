@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface FotoRepository extends JpaRepository<FotoEntity,Integer> {
-    List<FotoEntity> findByIdLugar(int id_lugar);
+    List<FotoEntity> findAllByIdLugar(int id_lugar);
 
 }

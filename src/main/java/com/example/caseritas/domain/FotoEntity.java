@@ -10,6 +10,7 @@ public class FotoEntity {
     private String foto;
     private int idLugar;
 
+    @Basic
     @Id
     @Column(name = "id_foto")
     public int getIdFoto() {

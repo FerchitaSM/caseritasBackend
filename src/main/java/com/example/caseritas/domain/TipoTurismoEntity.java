@@ -9,6 +9,7 @@ public class TipoTurismoEntity {
     private int idTipoTurismo;
     private String tipoTurismo;
 
+    @Basic
     @Id
     @Column(name = "id_tipo_turismo")
     public int getIdTipoTurismo() {

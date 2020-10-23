@@ -12,7 +12,6 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200",maxAge = 3600)
 @RestController
-@RequestMapping({"/caseritas"})
 public class LugarController {
 
     LugarBl lugarBl;
@@ -22,7 +21,13 @@ public class LugarController {
         this.lugarBl = lugarBl;
     }
 
-    @RequestMapping("/listPlaces")
+    @RequestMapping("")
+    public String name() {
+        System.out.println("sssssssss");
+        return "list_places";
+    }
+
+    @RequestMapping("/lista")
     public List<LugarEntity> list_places() {
         List<LugarEntity> list_places= lugarBl.list_places();
         return list_places;
@@ -30,7 +35,7 @@ public class LugarController {
 
     //me pasas el nombre del tipo de turismo en minusculas osea "gastronomico""cultural""aventura""naturaleza"""octurno""comunitario"............
     // te devuelvo un LugarEntity
-    @GetMapping(path = {"/listPlacesType/{name}"})
+    @GetMapping(path = {"/lista/tipo/{name}"})
     public List<LugarEntity> list_places_type(@PathVariable("name")String tipo_turismo) {
         //Recupera los datos de los lugares por el tipo de turismo con el id ""
         List<LugarEntity> list_places= lugarBl.list_places_type(tipo_turismo);
@@ -39,10 +44,11 @@ public class LugarController {
 
     //ne pasas el id del lugar
     //Te devuelvo un place
-    @GetMapping(path = {"/placeId/{id}"})
+    @GetMapping(path = {"/detalle/{id}"})
     public Place place(@PathVariable("id")int id_lugar) {
         //Recupera los datos del lugar con el id ""
         Place place= lugarBl.place(id_lugar);
+        System.out.println(place.toString());
         return place;
     }
 

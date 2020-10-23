@@ -15,6 +15,7 @@ public class LugarEntity {
     private double longitud;
     private int numero;
 
+    @Basic
     @Id
     @Column(name = "id_lugar")
     public int getIdLugar() {

@@ -36,7 +36,7 @@ public class LugarBl {
 
     public Place place(int id_lugar) {
         LugarEntity lugar = lugarRepository.findByIdLugar(id_lugar);
-        List<FotoEntity> listPhotos = fotoRepository.findByIdLugar(id_lugar);
+        List<FotoEntity> listPhotos = fotoRepository.findAllByIdLugar(id_lugar);
         List<String> listPhotosString = new ArrayList<>();
         for (FotoEntity foto: listPhotos) {
             listPhotosString.add(foto.getFoto());
