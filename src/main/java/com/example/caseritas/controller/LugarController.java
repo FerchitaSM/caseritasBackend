@@ -8,6 +8,7 @@ import com.example.caseritas.dto.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200",maxAge = 3600)
@@ -28,8 +29,14 @@ public class LugarController {
     }
 
     @RequestMapping("/lista")
-    public List<LugarEntity> list_places() {
-        List<LugarEntity> list_places= lugarBl.list_places();
+    public List<LugarEntity> list_lugares() {
+        List<LugarEntity> list_places= lugarBl.list_lugares();
+        return list_places;
+    }
+
+    @GetMapping(path = {"/places"})
+    public List<Place> list_places() {
+        List<Place> list_places= lugarBl.list_places();
         return list_places;
     }
 
@@ -38,7 +45,8 @@ public class LugarController {
     @GetMapping(path = {"/lista/tipo/{name}"})
     public List<LugarEntity> list_places_type(@PathVariable("name")String tipo_turismo) {
         //Recupera los datos de los lugares por el tipo de turismo con el id ""
-        List<LugarEntity> list_places= lugarBl.list_places_type(tipo_turismo);
+        List<LugarEntity> list_places = new ArrayList<>();
+        list_places= lugarBl.list_places_type(tipo_turismo);
         return list_places;
     }
 

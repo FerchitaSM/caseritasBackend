@@ -28,8 +28,14 @@ public class LugarBl {
     }
 
     public List<LugarEntity> list_places_type(String tipo_turismo) {
-        int id_tipo_turismo = lugarRepository.findIdByTipoTurismo(tipo_turismo);
-        List<LugarEntity> listPlaces = lugarRepository.findAllByIdTipoTurismo(id_tipo_turismo);
+        List<LugarEntity> listPlaces = new ArrayList<>();
+        try {
+            int id_tipo_turismo = lugarRepository.findIdByTipoTurismo(tipo_turismo);
+            listPlaces = lugarRepository.findAllByIdTipoTurismo(id_tipo_turismo);
+        }catch (Exception e)
+        {
+            return listPlaces;
+        }
         return listPlaces;
 
     }
@@ -45,7 +51,25 @@ public class LugarBl {
         return place;
     }
 
-    public List<LugarEntity> list_places() {
+    public List<Place> list_places() {
+        List<LugarEntity> listLugares = lugarRepository.findAll();
+        List<Place> listPlaces = new ArrayList<>();
+
+        for (LugarEntity lugar: listLugares) {
+            List<FotoEntity> listPhotos = fotoRepository.findAllByIdLugar(lugar.getIdLugar());
+            List<String> listPhotosString = new ArrayList<>();
+            for (FotoEntity foto: listPhotos) {
+                listPhotosString.add(foto.getFoto());
+            }
+            Place place = new Place(lugar.getNombre(), lugar.getDescripcion(),lugar.getUbicacion(),listPhotosString,lugar.getLatitud(),lugar.getLongitud(),lugar.getNumero());
+            listPlaces.add(place);
+        }
+        return listPlaces;
+    }
+
+
+
+    public List<LugarEntity> list_lugares() {
         List<LugarEntity> listPlaces = lugarRepository.findAll();
         return listPlaces;
     }
