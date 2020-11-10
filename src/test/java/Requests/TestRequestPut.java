@@ -3,6 +3,8 @@ package Requests;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.File;
 
@@ -13,11 +15,12 @@ public class TestRequestPut {
 
     public static void main(String[] args){
 
-        Response responsePut = given()
-                .body(new File("C:/Users/Fernanda/Desktop/DESARROLLO DE SOFTWARE/caseritas/src/test/java/Requests/PutTest.json")).contentType(ContentType.JSON)
-                .put("http://localhost:8080/contactanos/actualizar");
+        given().when()
+                .body(new File("src/test/java/Requests/PutTest.json")).contentType(ContentType.JSON)
+                .put("http://localhost:8080/contactanos/actualizar")
+                .then().assertThat().statusCode(202)
+                .toString();
 
-        System.out.println("Respuesta "+ responsePut.asString() );
 
     }
 

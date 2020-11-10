@@ -1,7 +1,8 @@
 {
-  "nombre" : "nombre",
-  "email" : "email",
-  "telefono" : 2751125,
-  "asunto" : "asunto",
-  "mensaje" : "mensaje"
+  "nombre" : "Fernanda",
+  "email" : "email1@gmail.com",
+  "telefono" : 147852,
+  "asunto" : "prueba de gestion de calidad",
+  "mensaje" : "esta es una prueba"
 }
+

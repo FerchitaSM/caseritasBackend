@@ -29,30 +29,32 @@ public class ContactoController {
     @RequestMapping(value = "/contactanos/guardar", method = RequestMethod.POST)
     public ResponseEntity post(@RequestBody ContactoEntity contactoEntity, BindingResult bindingResult){
         contactoBl.save_contact(contactoEntity);
-        return new ResponseEntity(new ContactoController.Mensaje("Guardado"), HttpStatus.ACCEPTED);
+        return new ResponseEntity(new ContactoController.Mensaje("Guardado"), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/contactanos/listar", method = RequestMethod.GET)
     public ResponseEntity get(){
         List<ContactoEntity> list_contactanos= contactoBl.list_contactanos();
-        return new ResponseEntity(list_contactanos, HttpStatus.CREATED);
+        return new ResponseEntity(list_contactanos, HttpStatus.ACCEPTED);
     }
+
+
 
     @RequestMapping(value = "/contactanos/borrar/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id")int id) {
-        contactoBl.delete_contact(id);
-        return new ResponseEntity(new ContactoController.Mensaje("Borrado"), HttpStatus.ACCEPTED);
+        ResponseEntity responseEntity= contactoBl.delete_contact(id);
+        return responseEntity;
     }
 
     @RequestMapping(value = "/contactanos/actualizar", method = RequestMethod.PUT)
     public ResponseEntity put(@RequestBody ContactoEntity contactoEntity, BindingResult bindingResult){
-        contactoBl.put_contact(contactoEntity);
-        return new ResponseEntity(new ContactoController.Mensaje("Actualizado"), HttpStatus.ACCEPTED);
+        ResponseEntity responseEntity= contactoBl.put_contact(contactoEntity);
+        return responseEntity;
     }
     @RequestMapping(value = "/contactanos/actualizar/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity delete(@RequestBody ContactoEntity contactoEntity,@PathVariable("id")int id) {
-        contactoBl.patch_contact(id, contactoEntity);
-        return new ResponseEntity(new ContactoController.Mensaje("Actualizado"), HttpStatus.ACCEPTED);
+    public ResponseEntity patch(@RequestBody ContactoEntity contactoEntity,@PathVariable("id")int id) {
+        ResponseEntity responseEntity =contactoBl.patch_contact(id, contactoEntity);
+        return responseEntity;
     }
 
     public static class Mensaje{

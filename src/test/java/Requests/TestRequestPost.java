@@ -11,11 +11,13 @@ public class TestRequestPost {
 
     public static void main(String[] args){
 
-        Response responsePost = given()
-                .body(new File("C:/Users/Fernanda/Desktop/DESARROLLO DE SOFTWARE/caseritas/src/test/java/Requests/PostTest.json")).contentType(ContentType.JSON)
-                .post("http://localhost:8080/contactanos/guardar");
-
-        responsePost.prettyPrint();
+        given().when()
+                .body(new File("src/test/java/Requests/PostTest.json")).contentType(ContentType.JSON)
+                .post("http://localhost:8080/contactanos/guardar")
+                .then().assertThat()
+                    .statusCode(201)
+                .toString();
     }
+
 
 }
